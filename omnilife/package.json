@@ -1,0 +1,102 @@
+{
+  "name": "omnilife",
+  "version": "0.1.0",
+  "private": true,
+  "description": "全域生活平台 - 一体化生活服务平台",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "analyze": "ANALYZE=true npm run build",
+    "clean": "rm -rf .next out dist coverage .turbo",
+    "prepare": "husky install",
+    "docker:build": "docker build -t omnilife .",
+    "docker:run": "docker run -p 3000:3000 omnilife",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:prod": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma migrate reset",
+    "postinstall": "echo 'Build completed'",
+    "vercel-build": "npm run build"
+  },
+  "dependencies": {
+    "next": "15.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@prisma/client": "^5.22.0",
+    "@tanstack/react-query": "^5.62.7",
+    "zustand": "^5.0.2",
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.468.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.1.4",
+    "@radix-ui/react-dropdown-menu": "^2.1.4",
+    "@radix-ui/react-toast": "^1.2.4",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.2",
+    "autoprefixer": "^10.4.20",
+    "prisma": "^5.22.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.5.2",
+    "playwright": "^1.49.1",
+    "@playwright/test": "^1.49.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "@next/bundle-analyzer": "^15.3.3",
+    "tsx": "^4.7.0",
+    "identity-obj-proxy": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

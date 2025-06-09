@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 100%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 220 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* 自定义滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+}
+
+@layer components {
+  /* 毛玻璃效果 */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  /* 霓虹发光效果 */
+  .neon-glow {
+    @apply shadow-lg shadow-primary/25;
+  }
+  
+  .neon-glow-cyan {
+    @apply shadow-lg shadow-accent-cyan/25;
+  }
+  
+  /* 渐变文字 */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent-cyan bg-clip-text text-transparent;
+  }
+  
+  /* 浮动动画 */
+  .float-animation {
+    @apply animate-float;
+  }
+  
+  /* 卡片悬停效果 */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20;
+  }
+  
+  /* 按钮发光效果 */
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+  
+  .btn-glow:hover::before {
+    transform: translateX(100%);
+  }
+}
+
+@layer utilities {
+  /* 文字选择样式 */
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+  
+  /* 焦点样式 */
+  .focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+  
+  /* 隐藏滚动条但保持功能 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 加载动画 */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* 打字机效果 */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
+}
